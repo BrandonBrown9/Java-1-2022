@@ -1,4 +1,4 @@
-//BrandonBrown
+//BrandonBrown 4/15/22
 
 import java.text.NumberFormat;
 import java.util.Scanner;
@@ -22,6 +22,8 @@ public class InvoiceApp {
             //-------------- SWITCH STATEMENT -------------- //
              
             // switch(customerType) {
+            //
+            //     // ------ STEP 4 ------//
             //     // customers with less than $500 subtotal should get a 40% discount
             //     // customers with a subtotal of $500 or more should get a %50 discount
             //     case "t":
@@ -32,6 +34,8 @@ public class InvoiceApp {
             //             discountPercent = .5;
             //         }
             //         break;
+            //
+            //     // ------ STEP 2 ------//
             //     // customers with less than $100 subtotal should not get a discount
             //     // customers with a subtotal of $100 or more and less than $250 should get a %10 discount
             //     // customers with a subtotal of $250 or more but less than $500 should get a .25 discount
@@ -48,17 +52,21 @@ public class InvoiceApp {
             //             discountPercent = .3;
             //         }
             //         break;
-            //     case "c":
-            //     case "C":
+            //
+            //         // ------ STEP 3 ------//
             //         // customers with less than $250 subtotal should get a 20% discount
             //         // customers with a subtotal of $250 or more should get a %30 discount
             //         // customers should have an automatic discount of 20%
+            //     case "c":
+            //     case "C":
             //         if (subtotal < 250) {
             //             discountPercent = .2;
             //         } else if (subtotal >= 250) {
             //             discountPercent = .2;
             //         }
             //         break;
+            //
+            //     // ------ STEP 5 ------//
             //     // the default case takes any input outside of "r","R", "c", "C", "t", "T" and applies a 0% discount
             //     default:
             //         discountPercent = 0.0;
@@ -67,7 +75,8 @@ public class InvoiceApp {
             //-------------- END SWITCH STATEMENT -------------- //
 
             //-------------- If/Else STATEMENTS -------------- //
-
+            //
+            // ------ STEPS 6 and 7 ------//
             if (customerType.equalsIgnoreCase("t")) {
                 if (subtotal < 500) {
                     discountPercent = .4;
