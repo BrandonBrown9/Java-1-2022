@@ -1,8 +1,29 @@
+// Brandon Brown 2/25/22
+
 import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class FutureValueApp {
 
+    // --------- STEP 3 --------- //
+    private static void printFormattedResults(double monthlyInvestment, double interestRate, int years, double futureValue) {
+         
+        // --------- STEP 4 --------- //
+        // get the currency and percent formatters
+         NumberFormat c = NumberFormat.getCurrencyInstance();
+         NumberFormat p = NumberFormat.getPercentInstance();
+         p.setMinimumFractionDigits(1);
+
+         // format the result as a single string
+         String results
+           = "Monthly investment:   " + c.format(monthlyInvestment) + "\n"
+           + "Yearly interest rate: " + p.format(interestRate / 100) + "\n"
+           + "Number of years:      " + years + "\n"
+           + "Future value:         " + c.format(futureValue) + "\n";
+
+        // prints string to printFormattedFutureValue()
+
+    }
     public static void main(String[] args) {
         System.out.println("Welcome to the Future Value Calculator\n");
 
@@ -19,23 +40,18 @@ public class FutureValueApp {
                     "Enter number of years: ", 0, 100);
             System.out.println();
 
+            // --------- STEP 5 --------- //
+            // call printFormattedResults
+            double newFutureValue = printFormattedResults(
+                monthlyInvestment, interestRate, years, futureValue);
+
             // calculate the future value
             double monthlyInterestRate = interestRate / 12 / 100;
             int months = years * 12;
             double futureValue = calculateFutureValue(
                     monthlyInvestment, monthlyInterestRate, months);
 
-            // get the currency and percent formatters
-            NumberFormat c = NumberFormat.getCurrencyInstance();
-            NumberFormat p = NumberFormat.getPercentInstance();
-            p.setMinimumFractionDigits(1);
 
-            // format the result as a single string
-            String results
-              = "Monthly investment:   " + c.format(monthlyInvestment) + "\n"
-              + "Yearly interest rate: " + p.format(interestRate / 100) + "\n"
-              + "Number of years:      " + years + "\n"
-              + "Future value:         " + c.format(futureValue) + "\n";
 
             // print the results
             System.out.println("FORMATTED RESULTS");
