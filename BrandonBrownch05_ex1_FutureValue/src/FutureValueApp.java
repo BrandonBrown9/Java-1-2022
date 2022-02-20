@@ -1,29 +1,8 @@
-// Brandon Brown 2/25/22
-
 import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class FutureValueApp {
 
-    // --------- STEP 3 --------- //
-    private static void printFormattedResults(double monthlyInvestment, double interestRate, int years, double futureValue) {
-         
-        // --------- STEP 4 --------- //
-        // get the currency and percent formatters
-         NumberFormat c = NumberFormat.getCurrencyInstance();
-         NumberFormat p = NumberFormat.getPercentInstance();
-         p.setMinimumFractionDigits(1);
-
-         // format the result as a single string
-         String results
-           = "Monthly investment:   " + c.format(monthlyInvestment) + "\n"
-           + "Yearly interest rate: " + p.format(interestRate / 100) + "\n"
-           + "Number of years:      " + years + "\n"
-           + "Future value:         " + c.format(futureValue) + "\n";
-
-        // prints string to printFormattedFutureValue()
-
-    }
     public static void main(String[] args) {
         System.out.println("Welcome to the Future Value Calculator\n");
 
@@ -40,28 +19,18 @@ public class FutureValueApp {
                     "Enter number of years: ", 0, 100);
             System.out.println();
 
-            // --------- STEP 5 --------- //
-            // call printFormattedResults
-            double newFutureValue = printFormattedResults(
-                monthlyInvestment, interestRate, years, futureValue);
-
             // calculate the future value
             double monthlyInterestRate = interestRate / 12 / 100;
             int months = years * 12;
             double futureValue = calculateFutureValue(
                     monthlyInvestment, monthlyInterestRate, months);
 
+            // step 5 
+            printFormattedResults(monthlyInvestment,
+             interestRate, years, futureValue);
 
-
-            // print the results
-            System.out.println("FORMATTED RESULTS");
-            System.out.println(results);
-
-            // see if the user wants to continue
-            System.out.print("Continue? (y/n): ");
-            choice = sc.next();
-            sc.nextLine();  // discard any other data entered on the line
-            System.out.println();
+            // step 8 - call askToContinue() method
+            askToContinue(sc, choice);   
         }
     }
 
@@ -144,4 +113,35 @@ public class FutureValueApp {
         }
         return futureValue;
     }
-}
+
+// step 3 - add a private scoped method that returns void
+    private static void printFormattedResults(double monthlyInvestment,
+        double interestRate, int years, double futureValue) {
+            // step 4 - move code from the main() method to printFormattedResults
+            // get the currency and percent formatters
+            NumberFormat c = NumberFormat.getCurrencyInstance();
+            NumberFormat p = NumberFormat.getPercentInstance();
+            p.setMinimumFractionDigits(1);
+    
+            // format the result as a single string
+            String results
+              = "Monthly investment:   " + c.format(monthlyInvestment) + "\n"
+              + "Yearly interest rate: " + p.format(interestRate / 100) + "\n"
+              + "Number of years:      " + years + "\n"
+              + "Future value:         " + c.format(futureValue) + "\n";
+    
+            // print the results
+            System.out.println("FORMATTED RESULTS");
+            System.out.println(results);
+    }
+
+
+    // step 6 - create a new public method called askToContinue that accepts a scanner object
+    public static void askToContinue(Scanner sc, String choice) {
+        // see if the user wants to continue
+        System.out.print("Continue? (y/n): ");
+        choice = sc.next(choice);
+        System.out.println(); 
+        return;
+        }   
+    }
