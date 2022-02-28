@@ -9,10 +9,11 @@ import java.text.NumberFormat;
 public class BB_TipCalculator {
 
     /*
-        Step 2 : Code Block 18 - 33
+        Step 2 & 7: Code Block 18 - 45
         Print the title of the application
         Create a scanner object called bbSC
         Declare a choice variable called bbChoice
+        Calculates tip amount
         Call all methods necessary
     */
     public static void main(String[] args) {
@@ -36,7 +37,6 @@ public class BB_TipCalculator {
                 bbFinalMealCost = (tipPercentage * bbMealCost) + bbMealCost;
             }
 
-            
             // ALL method calls here
             // caclculateTipPercentage(bbMealCost);
             printFormattedResults(tipPercentage, bbFinalMealCost, bbMealCost, tip);
@@ -46,9 +46,8 @@ public class BB_TipCalculator {
     
     // ALL methods here
 
-    // Step 5 : Code Block 
-        /*
-        Step 5 : Code Block 53 - 67
+    /*
+        Step 5 : Code Block 54 - 68
         Get the user input
         Validate and return user input
     */
@@ -68,17 +67,11 @@ public class BB_TipCalculator {
         return d;
     }
     
-    /*
-    Calculation tool
-    Initializes the tip
+     /*
+        Step 6 & 9 : Code Block 54 - 68
+        Format the percentages and currency
+        Print the results for console display
     */
-    // public static double caclculateTipPercentage(double bbMealCost, double tipPercentage, double bbFinalMealCost) {
-        
-    //     return bbFinalMealCost;
-    // }
-        
-
-
     public static void printFormattedResults(double tipPercentage, double bbFinalMealCost, double bbMealCost, double tip) {
         NumberFormat bbCurrency = NumberFormat.getCurrencyInstance();
         NumberFormat bbPercentage = NumberFormat.getPercentInstance();
@@ -86,18 +79,17 @@ public class BB_TipCalculator {
 
         // format the result as a string
         
-            String results
-            = "Cost of the meal:  " + bbCurrency.format(bbMealCost) + "\n \n"
-            + bbPercentage.format(tipPercentage) + "\n"
-            + "Tip amount:   " + bbCurrency.format(tip) + "\n"
-            + "Total amount: " + bbCurrency.format(bbFinalMealCost);
-        
-            System.out.println(results);
-        }
-
+        String results
+        = "Cost of the meal:  " + bbCurrency.format(bbMealCost) + "\n \n"
+        + bbPercentage.format(tipPercentage) + "\n"
+        + "Tip amount:   " + bbCurrency.format(tip) + "\n"
+        + "Total amount: " + bbCurrency.format(bbFinalMealCost);
+    
+        System.out.println(results);
+    }
 
     /*
-    Step 4 : Code Block 41 - 45
+    Step 4 : Code Block 95 - 100
     Create a method that asks the user to Continue called bbAskToContinue
     */
     private static String bbAskToContinue(Scanner bbSC) {
