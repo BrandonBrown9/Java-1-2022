@@ -27,10 +27,19 @@ public class BB_TipCalculator {
                 "Enter the cost of the meal: ");
             System.out.println();
 
+            double tipPercentage = .15;
+            double tip = 0;
+            double bbFinalMealCost = 0;
+            for (int i = 0; i < 2; i++) {
+                tipPercentage += .05;
+                tip = tipPercentage * bbMealCost;
+                bbFinalMealCost = (tipPercentage * bbMealCost) + bbMealCost;
+            }
+
             
             // ALL method calls here
             // caclculateTipPercentage(bbMealCost);
-            printFormattedResults(tipPercentage, bbFinalMealCost, bbMealCost);
+            printFormattedResults(tipPercentage, bbFinalMealCost, bbMealCost, tip);
             bbAskToContinue(bbSC);
         }
     }
@@ -63,43 +72,39 @@ public class BB_TipCalculator {
     Calculation tool
     Initializes the tip
     */
-    public static double caclculateTipPercentage(double bbMealCost) {
-        double tipPercentage = .15;
-        int counter = 3;
-        for (int i = 0; i < counter; i++) {
-            tipPercentage += .5;
-            bbFinalMealCost = (tipPercentage * bbMealCost) + bbMealCost;
-        }
-        return bbFinalMealCost;
-        return tipPercentage;
-        return bbMealCost;
-    }
+    // public static double caclculateTipPercentage(double bbMealCost, double tipPercentage, double bbFinalMealCost) {
+        
+    //     return bbFinalMealCost;
+    // }
+        
 
 
-    public static void printFormattedResults(double tipPercentage, double bbFinalMealCost, double bbMealCost) {
-        caclculateTipPercentage(tipPercentage, bbFinalMealCost, bbMealCost);
+    public static void printFormattedResults(double tipPercentage, double bbFinalMealCost, double bbMealCost, double tip) {
         NumberFormat bbCurrency = NumberFormat.getCurrencyInstance();
-        NumberFormat bbPercentage = NMumberFormat.getPercentInstance();
-        bbPercentage.setMinimumFractionDigits(1);
+        NumberFormat bbPercentage = NumberFormat.getPercentInstance();
+        bbPercentage.setMinimumFractionDigits(0);
 
         // format the result as a string
-        String results
-        = "Cost of the meal:  " + bbMealCost + "\n"
-        + bbPercentage.format(tipPercentage) + "\n"
-        + "Tip amount:   " + bbCurrency.format(bbMealCost) + "\n"
-        + "Total amount: " + bbCurency.format(bbFinalMealCost);
         
-        System.out.println(results);
-    }
+            String results
+            = "Cost of the meal:  " + bbCurrency.format(bbMealCost) + "\n \n"
+            + bbPercentage.format(tipPercentage) + "\n"
+            + "Tip amount:   " + bbCurrency.format(tip) + "\n"
+            + "Total amount: " + bbCurrency.format(bbFinalMealCost);
+        
+            System.out.println(results);
+        }
 
 
     /*
     Step 4 : Code Block 41 - 45
     Create a method that asks the user to Continue called bbAskToContinue
     */
-    public static void bbAskToContinue(Scanner bbSC) {
+    private static String bbAskToContinue(Scanner bbSC) {
         System.out.println("Continue? (y/n): ");
-        bbChoice = sc.next();
+        String bbChoice = bbSC.next();
         System.out.println();
+        return bbChoice;
     }
+    
 }
