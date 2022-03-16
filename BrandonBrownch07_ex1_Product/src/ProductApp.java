@@ -1,3 +1,4 @@
+// Brandon Brown 3/13/22
 import java.util.Scanner;
 
 public class ProductApp {
@@ -19,12 +20,12 @@ public class ProductApp {
             // get the Product object
             Product product = ProductDB.getProduct(productCode);
 
-            // display the output
+            // display the output`
             System.out.println();
             System.out.println("SELECTED PRODUCT");
             System.out.println("Description: " + product.getDescription());
-            System.out.println("Price:       " + product.getPriceFormatted());
-            System.out.println();
+            System.out.println("Price:       " + product.getPriceNumberFormat()); // Step 9 - Use new method created
+            System.out.println();                                                 // instead of getPriceFormatted
 
             // see if the user wants to continue
             System.out.print("Continue? (y/n): ");
