@@ -20,7 +20,7 @@ public class CardDeckApp {
         // add card Suites Here
 
         String[] suites = {
-            "hearts", "diamonds", "clubs", "spades"
+            "Hearts", "Diamonds", "Clubs", "Spades"
         };
 
         String[] ranks = {
