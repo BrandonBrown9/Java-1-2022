@@ -20,7 +20,7 @@ public class CardDeckApp {
     private static String[] getDeck() {
          String[] deck = new String[52];
         // add card Suites Here
-        // Step 2 - Create a deck of cards with 2 string arrays; one for suites and one for rank.
+        // Step 2 - Create a deck of cards with 2 string arrays; one for suites and one for rank. Fill the deck with the cards.
 
         String[] suites = {
             "Hearts", "Diamonds", "Clubs", "Spades"
