@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.ArrayList;
 
 public class CardDeckApp {
 
@@ -34,7 +36,9 @@ public class CardDeckApp {
         for(int i = 0; i < ranks.length; i++) { 
             for(int j = 0; j < suites.length;j++) { 
                Arrays.fill(deck, ranks[i] + suites[j] + "|"); // Fills the deck with ranks and suites.
-               // System.out.println(deck[1]); // Successful test of the fill method
+               // System.out.println(deck[i]); // Successful test of the fill method
+               displayCards(deck);
+               shuffleDeck(deck);
             }
         }
         return deck;
@@ -42,13 +46,17 @@ public class CardDeckApp {
 
     private static void displayCards(String[] cards) {
         // add code that displays cards here
+        System.out.println(cards[0]);
     }
 
     private static void shuffleDeck(String[] deck) {
-        int randomIndex = (int) (Math.random() * deck.length-1);
+            int randomIndex = (int) (Math.random() * deck.length-1);
+            // add code that shuffles the deck here
+        }
         
-        // add code that shuffles the deck here
-    }
+    
+    
+
 
     private static String[] dealCards(String[] deck, int count) {
         String[] hand = new String[count];
