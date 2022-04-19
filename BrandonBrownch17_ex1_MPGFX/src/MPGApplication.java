@@ -1,3 +1,4 @@
+import java.text.NumberFormat;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,9 +12,13 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MPGApplication extends Application {
-    
+        private TextField miles;
+        private TextField gallons;
+        private TextField mpg;
+
     @Override
     public void start(Stage primaryStage) {
+        
         // Step 4 - Create grid with labels and text fields.
         // Step 6 - Give grid 25px from the sides. Center the grid. Give 10px between the rows.
             GridPane grid = new GridPane();
@@ -38,6 +43,8 @@ public class MPGApplication extends Application {
             Button btn = new Button();
             grid.add(btn, 1, 4); // Give the button a fixed position AFTER the labels and fields
             btn.setText("Calculate");
+            btn.setOnAction(event -> calculateButtonClicked());
+
             btn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -51,6 +58,24 @@ public class MPGApplication extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();        
     } // End of MPGApplication
+
+    private void calculateButtonClicked() {
+        // get the data from the Fields
+            String milesInput = miles.getText();
+            double milesValue = Double.parseDouble(milesInput);
+            String gallonsInput = gallons.getText();
+            double gallonsValue = Double.parseDouble(gallonsInput);
+
+        // calculate the MPG
+            double mpgResult = milesValue / gallonsValue;
+            mpg.setText(Double.toString(mpgResult));
+            //double  = miles / gallonsField;
+
+        // set the text in the field and    
+            NumberFormat currency = NumberFormat.getCurrencyInstance();
+            mpg.setText(currency.format(mpgResult));
+    }
+
 
     public static void main(String[] args) {
         launch(args);
