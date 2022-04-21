@@ -1,3 +1,4 @@
+import java.text.NumberFormat;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 
 public class MPGApplication extends Application {
     public TextField miles;
@@ -54,11 +54,10 @@ public class MPGApplication extends Application {
         
                 // calculate the MPG
                 double mpgResult = milesValue / gallonsValue;
+                NumberFormat nf= NumberFormat.getInstance();
+                nf.setMaximumFractionDigits(2);
+                nf.format(mpgResult);
                 mpg.setText(Double.toString(mpgResult));
-
-                // // set the text in the field and    
-                // NumberFormat currency = NumberFormat.getCurrencyInstance();
-                // mpg.setText(currency.format(mpgResult));
             }
         });
 
@@ -71,6 +70,5 @@ public class MPGApplication extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-    
+    }   
 }
