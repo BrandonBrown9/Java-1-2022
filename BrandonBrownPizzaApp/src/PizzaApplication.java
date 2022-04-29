@@ -1,6 +1,7 @@
 // Brandon Brown 4/25/2022
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,7 +20,6 @@ public class PizzaApplication extends Application {
     public TextField bbPrice;
 
     // Step 1 - GridPane, Scene, TextFields, Labels, and Buttons
-    @Override
     public void start(Stage primaryStage) { 
     GridPane grid = new GridPane();
 
@@ -64,6 +64,27 @@ public class PizzaApplication extends Application {
 
     // Calculate button method
     private void bbCalculateButtonClicked() {
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+
+        if (bbPizzaSize.getText().isEmpty()) { 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Missing / Invalid Entry!");
+            alert.setContentText("Please enter a valid Pizza size.");
+            alert.showAndWait();
+            return;
+    }
+
+        double bbParseQty;
+        try { 
+            bbParseQty = Double.parseDouble(bbQty.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Invalid Quantity Entry");
+            alert.setContentText("Please enter a valid number for your Pizza order.");
+            alert.showAndWait();
+            return;
+        }
+
         String[] bbPSizes = {
             "personal", "medium", "large", "extra large"
         };
@@ -71,34 +92,22 @@ public class PizzaApplication extends Application {
         double[] bbPPrices = {
             4.29, 8.49, 10.49, 15.49 
         };
-    
-        String bbSizeInput = bbPizzaSize.getText();
-        String bbQtyInput = bbQty.getText();
-        double bbQtyValue = Double.parseDouble(bbQtyInput);
-        NumberFormat nf = NumberFormat.getCurrencyInstance();
 
-        // Validation for fields (Pages 555 ,557, 561)
+        String bbSize = bbPizzaSize.getText();
+        double bbNewPrice = 0.00;
     
-        if ( bbSizeInput.equalsIgnoreCase(bbPSizes[0])) {
-            double bbFinalPrice = bbQtyValue * bbPPrices[0];
-            nf.format(bbFinalPrice);
-            bbPrice.setText(Double.toString(bbFinalPrice));
+        if (bbSize.equalsIgnoreCase(bbPSizes[0])) {
+            bbNewPrice = bbParseQty * bbPPrices[0];    
+        } else if (bbSize.equalsIgnoreCase(bbPSizes[1])) {
+            bbNewPrice = bbParseQty * bbPPrices[1];  
     
-        } else if (bbSizeInput.equalsIgnoreCase(bbPSizes[1])) {
-            double bbFinalPrice = bbQtyValue * bbPPrices[1];
-            nf.format(bbFinalPrice);
-            bbPrice.setText(Double.toString(bbFinalPrice));
+        } else if (bbSize.equalsIgnoreCase(bbPSizes[2])) {
+            bbNewPrice = bbParseQty * bbPPrices[2];  
     
-        } else if (bbSizeInput.equalsIgnoreCase(bbPSizes[2])) {
-            double bbFinalPrice = bbQtyValue * bbPPrices[2];
-            nf.format(bbFinalPrice);
-            bbPrice.setText(Double.toString(bbFinalPrice));
-    
-        } else if (bbSizeInput.equalsIgnoreCase(bbPSizes[3])) {
-            double bbFinalPrice = bbQtyValue * bbPPrices[3];
-            nf.format(bbFinalPrice);
-            bbPrice.setText(Double.toString(bbFinalPrice));
-        }  
+        } else {
+            bbNewPrice = bbParseQty * bbPPrices[3];
+        } 
+        bbPrice.setText(nf.format(bbNewPrice));
     }
 
     // Exit button method
